@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'katex/dist/katex.min.css';
+
+:root { color-scheme: dark; }
+
+html, body { background: theme('colors.bg.DEFAULT'); color: theme('colors.ink.DEFAULT'); }
+
+.prose-aprende {
+  @apply max-w-none text-ink;
+}
+.prose-aprende h1 { @apply text-2xl font-semibold mt-6 mb-3; }
+.prose-aprende h2 { @apply text-xl font-semibold mt-5 mb-2; }
+.prose-aprende h3 { @apply text-lg font-semibold mt-4 mb-2; }
+.prose-aprende p { @apply my-3 leading-relaxed; }
+.prose-aprende ul { @apply list-disc pl-6 my-3; }
+.prose-aprende ol { @apply list-decimal pl-6 my-3; }
+.prose-aprende code { @apply font-mono text-sm bg-bg-soft px-1 py-0.5 rounded; }
+.prose-aprende a { @apply text-brand underline underline-offset-2; }
