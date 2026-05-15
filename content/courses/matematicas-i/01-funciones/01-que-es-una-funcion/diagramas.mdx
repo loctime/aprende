@@ -1,0 +1,32 @@
+La idea de función como "máquina" que transforma entradas en salidas:
+
+<Diagrama>
+{`graph LR
+  A["x (entrada)"] --> F["f (regla)"]
+  F --> B["f(x) (salida)"]
+  style F fill:#2563eb,color:#fff,stroke:#1e3a8a`}
+</Diagrama>
+
+Relación entre dominio, codominio e imagen:
+
+<Diagrama>
+{`graph LR
+  subgraph Dominio
+    A1[x1]
+    A2[x2]
+    A3[x3]
+  end
+  subgraph Codominio
+    B1[y1]
+    B2[y2]
+    B3[y3]
+    B4[y4]
+  end
+  A1 --> B1
+  A2 --> B2
+  A3 --> B2
+  classDef imagen fill:#059669,color:#fff
+  class B1,B2 imagen`}
+</Diagrama>
+
+La **imagen** es el subconjunto del codominio que efectivamente "recibe" alguna entrada (en verde).
