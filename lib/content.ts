@@ -71,6 +71,14 @@ export function getCourse(slug: string): Course | null {
   return loadCourse(slug)
 }
 
+function findDirNameBySlug(parent: string, slug: string): string | null {
+  for (const name of listDirs(parent)) {
+    const parsed = parsePrefixed(name)
+    if (parsed?.slug === slug) return name
+  }
+  return null
+}
+
 function readTab(lessonDir: string, name: string): string {
   const filePath = path.join(lessonDir, `${name}.mdx`)
   if (!fs.existsSync(filePath)) return ''
@@ -89,8 +97,10 @@ export function getLesson(courseSlug: string, chapterSlug: string, lessonSlug: s
   if (lessonIdx === -1) return null
   const lesson = chapter.lessons[lessonIdx]
 
-  const chapterDirName = `${String(chapter.order).padStart(2, '0')}-${chapter.slug}`
-  const lessonDirName = `${String(lesson.order).padStart(2, '0')}-${lesson.slug}`
+  const chapterDirName = findDirNameBySlug(path.join(CONTENT_ROOT, courseSlug), chapterSlug)
+  if (!chapterDirName) return null
+  const lessonDirName = findDirNameBySlug(path.join(CONTENT_ROOT, courseSlug, chapterDirName), lessonSlug)
+  if (!lessonDirName) return null
   const lessonDir = path.join(CONTENT_ROOT, courseSlug, chapterDirName, lessonDirName)
 
   const tabs = {
